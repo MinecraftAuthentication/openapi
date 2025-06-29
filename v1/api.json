@@ -68,6 +68,14 @@
               "type": "string"
             },
             "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Signature",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
           }
         ],
         "responses": {
@@ -138,9 +146,6 @@
         "security": [
           {
             "appId": []
-          },
-          {
-            "signature": []
           }
         ]
       }
@@ -184,6 +189,14 @@
               "type": "string"
             },
             "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Signature",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
           }
         ],
         "responses": {
@@ -254,9 +267,6 @@
         "security": [
           {
             "appId": []
-          },
-          {
-            "signature": []
           }
         ]
       }
@@ -280,6 +290,14 @@
           {
             "in": "path",
             "name": "fromUserId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Signature",
             "schema": {
               "type": "string"
             },
@@ -344,9 +362,6 @@
         "security": [
           {
             "appId": []
-          },
-          {
-            "signature": []
           }
         ]
       }
@@ -378,6 +393,14 @@
           {
             "in": "path",
             "name": "tierName",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Signature",
             "schema": {
               "type": "string"
             },
@@ -445,9 +468,6 @@
         "security": [
           {
             "appId": []
-          },
-          {
-            "signature": []
           }
         ]
       }
@@ -471,6 +491,14 @@
           {
             "in": "path",
             "name": "fromUserId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Signature",
             "schema": {
               "type": "string"
             },
@@ -539,9 +567,6 @@
         "security": [
           {
             "appId": []
-          },
-          {
-            "signature": []
           }
         ]
       }
@@ -565,6 +590,14 @@
           {
             "in": "path",
             "name": "fromUserId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Signature",
             "schema": {
               "type": "string"
             },
@@ -643,9 +676,6 @@
         "security": [
           {
             "appId": []
-          },
-          {
-            "signature": []
           }
         ]
       }
@@ -681,6 +711,14 @@
               "type": "string"
             },
             "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Signature",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
           }
         ],
         "responses": {
@@ -755,9 +793,6 @@
         "security": [
           {
             "appId": []
-          },
-          {
-            "signature": []
           }
         ]
       }
@@ -781,6 +816,14 @@
           {
             "in": "path",
             "name": "fromUserId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Signature",
             "schema": {
               "type": "string"
             },
@@ -849,9 +892,6 @@
         "security": [
           {
             "appId": []
-          },
-          {
-            "signature": []
           }
         ]
       }
@@ -875,6 +915,14 @@
           {
             "in": "path",
             "name": "fromUserId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Signature",
             "schema": {
               "type": "string"
             },
@@ -950,9 +998,6 @@
         "security": [
           {
             "appId": []
-          },
-          {
-            "signature": []
           }
         ]
       }
@@ -984,6 +1029,14 @@
           {
             "in": "path",
             "name": "tier",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Signature",
             "schema": {
               "type": "string"
             },
@@ -1055,9 +1108,6 @@
         "security": [
           {
             "appId": []
-          },
-          {
-            "signature": []
           }
         ]
       }
@@ -1069,11 +1119,6 @@
         "type": "apiKey",
         "in": "header",
         "name": "X-Application-ID"
-      },
-      "signature": {
-        "type": "apiKey",
-        "in": "header",
-        "name": "X-Signature"
       }
     },
     "schemas": {
