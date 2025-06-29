@@ -1,0 +1,1640 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "User API",
+    "termsOfService": "https://github.com/MinecraftAuthentication/legal/blob/main/TERMS.md",
+    "contact": {
+      "name": "MinecraftAuthentication",
+      "url": "https://gooble.com"
+    },
+    "version": "v1"
+  },
+  "externalDocs": {
+    "description": "MinecraftAuthentication - Documentation",
+    "url": "https://docs.minecraftauth.me"
+  },
+  "servers": [
+    {
+      "url": "https://api.minecraftauth.me/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Discord",
+      "description": "All discord queries"
+    },
+    {
+      "name": "Patreon",
+      "description": "All patreon queries"
+    },
+    {
+      "name": "Twitch",
+      "description": "All twitch queries"
+    },
+    {
+      "name": "YouTube",
+      "description": "All youtube queries"
+    }
+  ],
+  "paths": {
+    "/{fromPlatform}/{fromUserId}/discord/{serverId}": {
+      "get": {
+        "tags": [
+          "Discord"
+        ],
+        "summary": "User in guild",
+        "operationId": "myApplications",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fromPlatform",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "fromUserId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "serverId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition passed"
+          },
+          "204": {
+            "description": "Condition failed"
+          },
+          "400": {
+            "description": "Invalid Parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidParameter"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Platform (ID) not linked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/PlatformIdNotLinked"
+                    },
+                    {
+                      "$ref": "#/components/schemas/PlatformNotLinked"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application owner does not have <code>MANAGE_GUILD</code> permission in the target server",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GuildNotAuthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Guilds not found <code>OR</code> Guild permissions not found <code>OR</code> Application not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/GuildsNotFound"
+                    },
+                    {
+                      "$ref": "#/components/schemas/GuildPermissionsNotFound"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApplicationNotFound"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "appId": []
+          },
+          {
+            "signature": []
+          }
+        ]
+      }
+    },
+    "/{fromPlatform}/{fromUserId}/discord/{serverId}/role/{roleId}": {
+      "get": {
+        "tags": [
+          "Discord"
+        ],
+        "summary": "User has role",
+        "operationId": "userHasRoleInGuild",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fromPlatform",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "fromUserId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "serverId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "roleId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition passed"
+          },
+          "204": {
+            "description": "Condition failed"
+          },
+          "400": {
+            "description": "Invalid Parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidParameter"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Platform (ID) not linked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/PlatformIdNotLinked"
+                    },
+                    {
+                      "$ref": "#/components/schemas/PlatformNotLinked"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application owner does not have <code>MANAGE_GUILD</code> permission in the target server",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GuildNotAuthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Guilds not found <code>OR</code> Guild permissions not found <code>OR</code> Application not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/GuildsNotFound"
+                    },
+                    {
+                      "$ref": "#/components/schemas/GuildPermissionsNotFound"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApplicationNotFound"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "appId": []
+          },
+          {
+            "signature": []
+          }
+        ]
+      }
+    },
+    "/{fromPlatform}/{fromUserId}/patreon": {
+      "get": {
+        "tags": [
+          "Patreon"
+        ],
+        "summary": "User is member",
+        "operationId": "userIsPatreonMember",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fromPlatform",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "fromUserId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition passed"
+          },
+          "204": {
+            "description": "Condition failed"
+          },
+          "400": {
+            "description": "Invalid Parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidParameter"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Platform (ID) not linked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/PlatformIdNotLinked"
+                    },
+                    {
+                      "$ref": "#/components/schemas/PlatformNotLinked"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No patrons found <code>OR</code> Application not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/NoPatronsFound"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApplicationNotFound"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Patreon response wasn't up to code."
+          }
+        },
+        "security": [
+          {
+            "appId": []
+          },
+          {
+            "signature": []
+          }
+        ]
+      }
+    },
+    "/{fromPlatform}/{fromUserId}/patreon/tier/{tierName}": {
+      "get": {
+        "tags": [
+          "Patreon"
+        ],
+        "summary": "User is member at tier",
+        "operationId": "userIsPatreonMemberAtTier",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fromPlatform",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "fromUserId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "tierName",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition passed"
+          },
+          "204": {
+            "description": "Condition failed"
+          },
+          "400": {
+            "description": "Invalid Parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidParameter"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Platform (ID) not linked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/PlatformIdNotLinked"
+                    },
+                    {
+                      "$ref": "#/components/schemas/PlatformNotLinked"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No patrons found <code>OR</code> No tier with name found <code>OR</code> Application not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/NoPatronsFound"
+                    },
+                    {
+                      "$ref": "#/components/schemas/NoTierFound"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApplicationNotFound"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Patreon response wasn't up to code."
+          }
+        },
+        "security": [
+          {
+            "appId": []
+          },
+          {
+            "signature": []
+          }
+        ]
+      }
+    },
+    "/{fromPlatform}/{fromUserId}/youtube": {
+      "get": {
+        "tags": [
+          "YouTube"
+        ],
+        "summary": "User is subscribed",
+        "operationId": "userIsSubscribedYouTube",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fromPlatform",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "fromUserId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition passed"
+          },
+          "204": {
+            "description": "Condition failed"
+          },
+          "400": {
+            "description": "Invalid Parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidParameter"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Platform (ID) not linked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/PlatformIdNotLinked"
+                    },
+                    {
+                      "$ref": "#/components/schemas/PlatformNotLinked"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/ApplicationNotFound"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to check subscription",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedToCheckSubscriptionYouTube"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "appId": []
+          },
+          {
+            "signature": []
+          }
+        ]
+      }
+    },
+    "/{fromPlatform}/{fromUserId}/youtube/member": {
+      "get": {
+        "tags": [
+          "YouTube"
+        ],
+        "summary": "User is member",
+        "operationId": "userIsMemberYouTube",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fromPlatform",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "fromUserId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition passed"
+          },
+          "204": {
+            "description": "Condition failed"
+          },
+          "400": {
+            "description": "Invalid Parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidParameter"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Platform (ID) not linked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/PlatformIdNotLinked"
+                    },
+                    {
+                      "$ref": "#/components/schemas/PlatformNotLinked"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No YouTube tiers found <code>OR</code> Application not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/NoTiersFound"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApplicationNotFound"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to check subscription <code>OR</code> YouTube response isn't up to code",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/FailedToCheckSubscriptionYouTube"
+                    },
+                    {
+                      "$ref": "#/components/schemas/MissingData"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "appId": []
+          },
+          {
+            "signature": []
+          }
+        ]
+      }
+    },
+    "/{fromPlatform}/{fromUserId}/youtube/member/{tier}": {
+      "get": {
+        "tags": [
+          "YouTube"
+        ],
+        "summary": "User is member at tier",
+        "operationId": "userIsMemberAtTierYouTube",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fromPlatform",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "fromUserId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "tier",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition passed"
+          },
+          "204": {
+            "description": "Condition failed"
+          },
+          "400": {
+            "description": "Invalid Parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidParameter"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Platform (ID) not linked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/PlatformIdNotLinked"
+                    },
+                    {
+                      "$ref": "#/components/schemas/PlatformNotLinked"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No YouTube tiers found <code>OR</code> Application not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/NoTiersFound"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApplicationNotFound"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to check subscription <code>OR</code> YouTube response isn't up to code",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/FailedToCheckSubscriptionYouTube"
+                    },
+                    {
+                      "$ref": "#/components/schemas/MissingData"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "appId": []
+          },
+          {
+            "signature": []
+          }
+        ]
+      }
+    },
+    "/{fromPlatform}/{fromUserId}/twitch": {
+      "get": {
+        "tags": [
+          "Twitch"
+        ],
+        "summary": "User is following",
+        "operationId": "userIsFollowingTwitch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fromPlatform",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "fromUserId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition passed"
+          },
+          "204": {
+            "description": "Condition failed"
+          },
+          "400": {
+            "description": "Invalid Parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidParameter"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Platform (ID) not linked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/PlatformIdNotLinked"
+                    },
+                    {
+                      "$ref": "#/components/schemas/PlatformNotLinked"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/ApplicationNotFound"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to check subscription",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedToCheckFollowTwitch"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "appId": []
+          },
+          {
+            "signature": []
+          }
+        ]
+      }
+    },
+    "/{fromPlatform}/{fromUserId}/twitch/subscriber": {
+      "get": {
+        "tags": [
+          "Twitch"
+        ],
+        "summary": "User is subscribed",
+        "operationId": "userIsSubscribedTwitch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fromPlatform",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "fromUserId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition passed"
+          },
+          "204": {
+            "description": "Condition failed"
+          },
+          "400": {
+            "description": "Invalid Parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidParameter"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Platform (ID) not linked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/PlatformIdNotLinked"
+                    },
+                    {
+                      "$ref": "#/components/schemas/PlatformNotLinked"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/ApplicationNotFound"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to check subscription <code>OR</code> Twitch response isn't up to code",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/FailedToCheckSubscriptionTwitch"
+                    },
+                    {
+                      "$ref": "#/components/schemas/MissingData"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "appId": []
+          },
+          {
+            "signature": []
+          }
+        ]
+      }
+    },
+    "/{fromPlatform}/{fromUserId}/twitch/subscriber/{tier}": {
+      "get": {
+        "tags": [
+          "Twitch"
+        ],
+        "summary": "User is subsribed at tier",
+        "operationId": "userIsSubscribedAtTier",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fromPlatform",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "fromUserId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "tier",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Condition passed"
+          },
+          "204": {
+            "description": "Condition failed"
+          },
+          "400": {
+            "description": "Invalid Parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidParameter"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Platform (ID) not linked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/PlatformIdNotLinked"
+                    },
+                    {
+                      "$ref": "#/components/schemas/PlatformNotLinked"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationNotFound"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to check subscription <code>OR</code> Twitch response isn't up to code",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/FailedToCheckSubscriptionTwitch"
+                    },
+                    {
+                      "$ref": "#/components/schemas/MissingData"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "appId": []
+          },
+          {
+            "signature": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "appId": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Application-ID"
+      },
+      "signature": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Signature"
+      }
+    },
+    "schemas": {
+      "InvalidParameter": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "invalid_parameter"
+              },
+              "message": {
+                "type": "string",
+                "example": "Invalid parameter [name] specified: [value]"
+              },
+              "data": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "example": "FAILURE"
+          }
+        }
+      },
+      "MissingData": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "missing_data"
+              },
+              "message": {
+                "type": "string",
+                "example": "Missing required data in response object: [missing,missing]"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "missing": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "PlatformIdNotLinked": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "platform_id_not_linked"
+              },
+              "message": {
+                "type": "string",
+                "example": "[plaatform] ID [user] is not linked"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "platform": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "example": "FAILURE"
+          }
+        }
+      },
+      "PlatformNotLinked": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "profile_not_linked"
+              },
+              "message": {
+                "type": "string",
+                "example": "Identity [uuid] does not have a linked [platform] profile"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "platform": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "example": "FAILURE"
+          }
+        }
+      },
+      "ApplicationNotFound": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "application_not_found"
+              },
+              "message": {
+                "type": "string",
+                "example": "No application found"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "example": "FAILURE"
+          }
+        }
+      },
+      "GuildNotAuthorized": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "application_guild_not_authorized"
+              },
+              "message": {
+                "type": "string",
+                "example": "You are not authorized to query information about this guild's members"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "application": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "owner": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "discord": {
+                    "type": "object",
+                    "properties": {
+                      "guild_id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "example": "FAILURE"
+          }
+        }
+      },
+      "GuildsNotFound": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "guilds_not_found"
+              },
+              "message": {
+                "type": "string",
+                "example": "Failed to retrieve member guilds"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "discord": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "example": "FAILURE"
+          }
+        }
+      },
+      "GuildPermissionsNotFound": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "guild_permissions_not_found"
+              },
+              "message": {
+                "type": "string",
+                "example": "Failed to retrieve guild member permissions"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "discord": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "guild_id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "example": "FAILURE"
+          }
+        }
+      },
+      "NoPatronsFound": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "no_patrons_found"
+              },
+              "message": {
+                "type": "string",
+                "example": "No patrons found for campaign"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "patreon": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "campaign_id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "example": "FAILURE"
+          }
+        }
+      },
+      "NoTierFound": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "no_tier_found"
+              },
+              "message": {
+                "type": "string",
+                "example": "No tier found for Patreon account"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "patreon": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "campaign_id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "example": "FAILURE"
+          }
+        }
+      },
+      "FailedToCheckSubscriptionTwitch": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "failed_to_check_subscription"
+              },
+              "message": {
+                "type": "string",
+                "example": "Failed to check Twitch subscription"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "broadcaster": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "viewer": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "example": "FAILURE"
+          }
+        }
+      },
+      "FailedToCheckFollowTwitch": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "failed_to_check_follow"
+              },
+              "message": {
+                "type": "string",
+                "example": "Failed to check Twitch follow status"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "broadcaster": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "viewer": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "example": "FAILURE"
+          }
+        }
+      },
+      "FailedToCheckSubscriptionYouTube": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "failed_to_check_subscription"
+              },
+              "message": {
+                "type": "string",
+                "example": "Failed to check YouTube subscription"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "youtube": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "example": "FAILURE"
+          }
+        }
+      },
+      "NoTiersFound": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "no_tiers_found"
+              },
+              "message": {
+                "type": "string",
+                "example": "No YouTube membership tiers found"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "youtube": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "example": "FAILURE"
+          }
+        }
+      },
+      "NoTierWithNameFound": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "no_tier_with_name_found"
+              },
+              "message": {
+                "type": "string",
+                "example": "No YouTube membership tier found with name [name]"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "youtube": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "example": "FAILURE"
+          }
+        }
+      }
+    }
+  }
+}
